@@ -17,7 +17,15 @@ const projects = [
   { name: 'Mobile App', url: '#', id: '3' },
 ];
 
-export const SidebarActionGroup = ({ label }: { label: string }) => {
+interface SidebarActionGroupProps {
+  label: string;
+  onItemClick?: () => void;
+}
+
+export const SidebarActionGroup = ({
+  label,
+  onItemClick,
+}: SidebarActionGroupProps) => {
   const { pathname } = useLocation();
 
   const MAX_PROJECTS = 5;
@@ -32,7 +40,7 @@ export const SidebarActionGroup = ({ label }: { label: string }) => {
       <SidebarGroupContent>
         <SidebarMenu>
           {displayedProjects.map((project) => (
-            <SidebarMenuItem key={project.id}>
+            <SidebarMenuItem key={project.id} onClick={onItemClick}>
               <ProjectItem
                 name={project.name}
                 url={project.url}
@@ -45,6 +53,7 @@ export const SidebarActionGroup = ({ label }: { label: string }) => {
               <SidebarMenuButton
                 asChild
                 className='text-muted-foreground hover:text-foreground'
+                onClick={onItemClick}
               >
                 <Link to='/projects'>
                   <span className='text-xs ml-9'>See all projects</span>
