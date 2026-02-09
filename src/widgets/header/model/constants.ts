@@ -19,4 +19,8 @@ export const HEADER_DATA: Record<string, HeaderData> = {
     title: 'Members',
     description: 'View and manage team members, roles, and permissions',
   },
+  '/projects': {
+    title: 'Projects',
+    description: 'View and manage your projects',
+  },
 };

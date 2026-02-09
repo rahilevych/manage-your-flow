@@ -4,6 +4,7 @@ import { SettingsPage } from '@/pages/SettingsPage';
 import { HomePage } from '@/pages/HomePage';
 import { MembersPage } from '@/pages/MembersPage';
 import { TasksPage } from '@/pages/TasksPage';
+import { ProjectPage } from '@/pages/ProjectPage';
 
 export const AppRouter = () => {
   return (
@@ -15,6 +16,7 @@ export const AppRouter = () => {
           <Route path='members' element={<MembersPage />} />
           <Route path='tasks' element={<TasksPage />} />
           <Route path='settings' element={<SettingsPage />} />
+          <Route path='projects' element={<ProjectPage />} />
         </Route>
       </Routes>
     </Router>
