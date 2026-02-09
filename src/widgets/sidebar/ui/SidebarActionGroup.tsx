@@ -1,15 +1,15 @@
 import { ProjectItem } from '@/entities/project/ui/ProjectItem';
+import { SeeAllButton } from '@/shared/ui/custom/SeeAllButton';
 import {
   SidebarGroup,
   SidebarGroupAction,
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
 } from '@/shared/ui/sidebar';
 import { Plus } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const projects = [
   { name: 'Frontend App', url: '#', id: '1' },
@@ -50,15 +50,7 @@ export const SidebarActionGroup = ({
           ))}
           {isHasMore && (
             <SidebarMenuItem>
-              <SidebarMenuButton
-                asChild
-                className='text-muted-foreground hover:text-foreground'
-                onClick={onItemClick}
-              >
-                <Link to='/projects'>
-                  <span className='text-xs ml-9'>See all projects</span>
-                </Link>
-              </SidebarMenuButton>
+              <SeeAllButton to='/projects' label='See all projects' />
             </SidebarMenuItem>
           )}
         </SidebarMenu>
