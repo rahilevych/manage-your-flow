@@ -16,6 +16,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import z from 'zod';
+import { useCreateWorkspace } from '../model/useCreateWorkspace';
 
 interface CreateWorkspaceModalProps {
   children: React.ReactNode;
@@ -34,6 +35,7 @@ export const CreateWorkspaceModal = ({
   children,
 }: CreateWorkspaceModalProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { mutate } = useCreateWorkspace();
   const {
     register,
     handleSubmit,
@@ -43,6 +45,7 @@ export const CreateWorkspaceModal = ({
     resolver: zodResolver(workspaceSchema),
   });
   const onSubmit = (data: z.infer<typeof workspaceSchema>) => {
+    mutate(data);
     console.log(data);
     setIsOpen(false);
     reset();

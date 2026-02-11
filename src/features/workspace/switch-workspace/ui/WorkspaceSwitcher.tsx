@@ -14,7 +14,7 @@ import {
 } from '@/shared/ui/sidebar';
 import { ChevronsUpDown, Plus } from 'lucide-react';
 import { useState } from 'react';
-import { CreateWorkspaceModal } from '../../create-workspace/ui/CreateModal';
+import { CreateWorkspaceModal } from '../../create-workspace/ui/CreateWorkspaceModal';
 
 const workspaces = [
   { name: 'Design Team', id: '1' },
