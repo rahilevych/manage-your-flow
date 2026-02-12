@@ -17,7 +17,7 @@ export const useLogin = () => {
       queryClient.invalidateQueries({ queryKey: ['currentUser'] });
       setIsAuth(true);
       toast.success('Successfully logged in!');
-      navigate('/dashboard');
+      navigate('/welcome');
     },
     onError: (error) => {
       console.log(error);

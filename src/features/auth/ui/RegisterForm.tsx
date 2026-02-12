@@ -150,7 +150,7 @@ export const RegisterForm = () => {
       <CardFooter className='justify-center border-t p-4'>
         <p className='text-sm text-muted-foreground'>
           Do you have already account?
-          <Link to='/login' className='font-bold p-0 h-auto'>
+          <Link to='/auth/login' className='font-bold p-0 h-auto'>
             Sign In
           </Link>
         </p>

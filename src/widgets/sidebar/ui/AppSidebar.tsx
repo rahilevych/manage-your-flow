@@ -7,7 +7,7 @@ import {
 import { SidebarActionGroup } from './SidebarActionGroup';
 import { AppSidebarFooter } from './AppSidebarFooter';
 import { AppSidebarMenu } from './AppSidebarMenu';
-import { WorkspaceSwitcher } from '@/features/workspace-switch/ui/WorkspaceSwitcher';
+import { WorkspaceSwitcher } from '@/features/workspace/ui/select-workspace/WorkspaceSwitcher';
 
 export const AppSidebar = () => {
   const { isMobile, setOpenMobile } = useSidebar();

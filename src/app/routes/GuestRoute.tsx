@@ -8,7 +8,7 @@ export const GuestRoute = () => {
   const token = localStorage.getItem('accessToken');
   if (isPending && token) return <Loader />;
   if (user && token) {
-    return <Navigate to='/dashboard' replace />;
+    return <Navigate to='/welcome' replace />;
   }
   return <Outlet />;
 };

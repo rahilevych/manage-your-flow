@@ -1,10 +1,10 @@
-import { useLocation } from 'react-router-dom';
-import { HEADER_DATA } from '../model/constants';
+import { useMatches } from 'react-router-dom';
 
 export const HeaderContent = () => {
-  const { pathname } = useLocation();
+  const matches = useMatches();
+  const currentMatch = [...matches].reverse().find((m) => m.handle);
+  const meta = currentMatch?.handle as { title: string; description?: string };
 
-  const meta = HEADER_DATA[pathname] || HEADER_DATA['/'];
   return (
     <header className=' flex items-start w-full mb-4'>
       <div>
