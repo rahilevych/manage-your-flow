@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { refereshAccessToken } from './refereshAccessToken';
+import { normalizeError } from './normalizeError';
 
 export const API_URL = import.meta.env.VITE_API_URL;
 
@@ -22,6 +23,15 @@ const api = axios.create({
     'Content-Type': 'application/json',
   },
 });
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('accessToken');
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
+});
 
 api.interceptors.response.use(
   (response) => response.data,
@@ -29,7 +39,7 @@ api.interceptors.response.use(
     const originalRequest = error.config;
 
     if (!error.response) {
-      return Promise.reject(error);
+      return Promise.reject(normalizeError(error));
     }
 
     const isAuthRequest =
@@ -66,13 +76,13 @@ api.interceptors.response.use(
       } catch (e) {
         localStorage.removeItem('accessToken');
         refreshSubscribers = [];
-        return Promise.reject(e);
+        return Promise.reject(normalizeError(e));
       } finally {
         isRefreshing = false;
       }
     }
 
-    return Promise.reject(error);
+    return Promise.reject(normalizeError(error));
   },
 );
 export default api;
