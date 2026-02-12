@@ -11,12 +11,7 @@ export const WorkspaceCard = ({ workspace }: WorkspaceCardProps) => {
         {workspace.name.charAt(0).toUpperCase()}
       </div>
       <div className='flex flex-col items-center overflow-hidden w-full'>
-        <span className='text-sm font-bold text-slate-700 truncate w-full text-center'>
-          {workspace.name}
-        </span>
-        <span className='text-[10px] uppercase tracking-wider text-slate-400 font-bold'>
-          Workspace
-        </span>
+        {workspace.name}
       </div>
     </div>
   );

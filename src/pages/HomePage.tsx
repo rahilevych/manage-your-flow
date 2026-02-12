@@ -1,6 +1,6 @@
 import { ProjectsOverview } from '@/widgets/dashboard/projects/home-overview/ui/ProjectsOverview';
-import { HomeStats } from '@/widgets/statistics-home/ui/HomeStats';
-import { TasksOverview } from '@/widgets/tasks-overview/ui/TasksOverview';
+import { HomeStats } from '@/widgets/dashboard/statistic/ui/HomeStats';
+import { TasksOverview } from '@/widgets/dashboard/tasks/home-overview/ui/TasksOverview';
 
 export const HomePage = () => {
   return (
