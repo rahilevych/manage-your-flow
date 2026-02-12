@@ -107,7 +107,7 @@ export const LoginForm = () => {
       <CardFooter className='justify-center border-t p-4'>
         <p className='text-sm text-muted-foreground'>
           Don&apos;t have an account?
-          <Link to='/register' className='p-0 h-auto font-bold'>
+          <Link to='/auth/register' className='p-0 h-auto font-bold'>
             Sign Up
           </Link>
         </p>

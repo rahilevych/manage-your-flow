@@ -18,7 +18,7 @@ export const useRegister = () => {
       queryClient.invalidateQueries({ queryKey: ['currentUser'] });
       setIsAuth(true);
       toast.success('Successfully registerd!');
-      navigate('/dashboard');
+      navigate('/welcome');
     },
     onError: (error) => {
       toast.error(error.message);

@@ -14,13 +14,13 @@ export const useLogout = () => {
       localStorage.removeItem('accessToken');
       queryClient.clear();
       toast.success('Successfully logged out!');
-      navigate('/auth', { replace: true });
+      navigate('/', { replace: true });
     },
     onError: () => {
       localStorage.removeItem('accessToken');
       queryClient.clear();
       setIsAuth(false);
-      navigate('/auth', { replace: true });
+      navigate('/', { replace: true });
     },
   });
 };
