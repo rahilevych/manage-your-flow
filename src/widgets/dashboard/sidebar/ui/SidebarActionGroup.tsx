@@ -31,6 +31,8 @@ export const SidebarActionGroup = ({
   const MAX_PROJECTS = 5;
   const displayedProjects = projects.slice(0, MAX_PROJECTS);
   const isHasMore = projects.length > MAX_PROJECTS;
+  const isEmpty = true;
+  if (isEmpty) return null;
   return (
     <SidebarGroup>
       <SidebarGroupLabel>{label}</SidebarGroupLabel>
