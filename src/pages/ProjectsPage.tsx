@@ -1,7 +1,8 @@
 import { ProjectOverviewItem } from '@/entities/project/ui/ProjectOverviewItem';
 import { useGetAllProjects } from '@/features/projects/model/useGetAllProjects';
 import { NoDataComponent } from '@/shared/ui/custom/NoDataComponent';
-import { FolderPlus, Loader } from 'lucide-react';
+import { Loader } from '@/shared/ui/Loader';
+import { FolderPlus } from 'lucide-react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router';
 
