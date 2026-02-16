@@ -10,7 +10,7 @@ export const Logo = () => {
       <div className='bg-primary text-primary-foreground p-1.5 rounded-lg'>
         <LayoutDashboard size={22} />
       </div>
-      <span>DevFlow</span>
+      <span>M.Y.F</span>
     </Link>
   );
 };
