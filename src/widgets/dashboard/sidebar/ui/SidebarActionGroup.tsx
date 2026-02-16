@@ -9,13 +9,15 @@ import {
   SidebarMenuItem,
 } from '@/shared/ui/sidebar';
 import { Plus } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
-
-const projects = [
-  { name: 'Frontend App', url: '#', id: '1' },
-  { name: 'Backend API', url: '#', id: '2' },
-  { name: 'Mobile App', url: '#', id: '3' },
-];
+import { useLocation, useParams } from 'react-router-dom';
+import { useGetAllProjects } from '@/features/projects/model/useGetAllProjects';
+import { Dialog, DialogContent } from '@/shared/ui/dialog';
+import {
+  ProjectForm,
+  type ProjectFormValues,
+} from '@/features/projects/ui/shared/ProjectForm';
+import { useState } from 'react';
+import { useCreateProject } from '@/features/projects/model/useCreateProject';
 
 interface SidebarActionGroupProps {
   label: string;
@@ -27,33 +29,74 @@ export const SidebarActionGroup = ({
   onItemClick,
 }: SidebarActionGroupProps) => {
   const { pathname } = useLocation();
-
+  const { id: workspaceId } = useParams<{ id: string }>();
+  const { data: projects = [], isPending } = useGetAllProjects(workspaceId!);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { mutate } = useCreateProject();
   const MAX_PROJECTS = 5;
   const displayedProjects = projects.slice(0, MAX_PROJECTS);
   const isHasMore = projects.length > MAX_PROJECTS;
-  const isEmpty = true;
-  if (isEmpty) return null;
+
+  if (isPending && projects.length === 0) return null;
+  const handleCreateProject = (data: ProjectFormValues) => {
+    mutate(
+      { dto: data, workspaceId: workspaceId! },
+      {
+        onSuccess: () => {
+          setIsModalOpen(false);
+        },
+      },
+    );
+  };
   return (
     <SidebarGroup>
       <SidebarGroupLabel>{label}</SidebarGroupLabel>
-      <SidebarGroupAction>
-        <Plus />
+
+      <SidebarGroupAction title='Create Project'>
+        <Plus size={16} onClick={() => setIsModalOpen(true)} />
       </SidebarGroupAction>
+
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent>
+          <ProjectForm
+            title='Create New Project'
+            submitText='Create'
+            isPending={isPending}
+            onSubmit={handleCreateProject}
+            onCancel={() => setIsModalOpen(false)}
+          />
+        </DialogContent>
+      </Dialog>
+
       <SidebarGroupContent>
         <SidebarMenu>
-          {displayedProjects.map((project) => (
-            <SidebarMenuItem key={project.id} onClick={onItemClick}>
-              <ProjectItem
-                name={project.name}
-                url={project.url}
-                isActive={pathname === project.url}
-              />
-            </SidebarMenuItem>
-          ))}
+          {displayedProjects.map((project) => {
+            const projectUrl = `/dashboard/${workspaceId}/projects/${project.id}`;
+
+            return (
+              <SidebarMenuItem key={project.id} onClick={onItemClick}>
+                <ProjectItem
+                  name={project.name}
+                  url={projectUrl}
+                  isActive={pathname === projectUrl}
+                />
+              </SidebarMenuItem>
+            );
+          })}
+
           {isHasMore && (
             <SidebarMenuItem>
-              <SeeAllButton to='/projects' label='See all projects' />
+              <SeeAllButton
+                to={`/dashboard/${workspaceId}/projects`}
+                label='See all projects'
+              />
             </SidebarMenuItem>
+          )}
+
+          {!isPending && projects.length === 0 && (
+            <p className='px-4 py-2 text-xs text-muted-foreground'>
+              No projects yet
+            </p>
           )}
         </SidebarMenu>
       </SidebarGroupContent>
