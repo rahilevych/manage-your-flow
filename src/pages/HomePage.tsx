@@ -1,20 +1,31 @@
+import { useGetAllProjects } from '@/features/projects/model/useGetAllProjects';
+import { HeaderContent } from '@/widgets/dashboard/dashboard-header/ui/HeaderContent';
 import { ProjectsOverview } from '@/widgets/dashboard/projects/home-overview/ui/ProjectsOverview';
-import { HomeStats } from '@/widgets/dashboard/statistic/ui/HomeStats';
+import { HomeStats } from '@/shared/ui/custom/Stats';
 import { HomeStatsNoProjects } from '@/widgets/dashboard/statistic/ui/HomeStatsNoProjects';
-import { TasksOverview } from '@/widgets/dashboard/tasks/home-overview/ui/TasksOverview';
+import { Loader } from 'lucide-react';
+import { useParams } from 'react-router';
+import { useGetWorkspaceStats } from '@/features/workspace/model/useGetWorkspaceStats';
 
 export const HomePage = () => {
-  const isWorkspaceEmpty = true;
-  //PROJECTS_OVERVIEW_MOCK.length === 0;
+  const { id: workspaceId } = useParams<{ id: string }>();
+  const { data: stats } = useGetWorkspaceStats(workspaceId!);
+  const { data: projects = [], isLoading } = useGetAllProjects(workspaceId!);
+  const isWorkspaceEmpty = !isLoading && projects.length === 0;
+
+  if (isLoading) return <Loader />;
+
   return (
     <div className=' grid grid-cols-1 py-2 space-y-6'>
-      {isWorkspaceEmpty ? <HomeStatsNoProjects /> : <HomeStats />}
-      <div className='grid grid-cols-1 xl:grid-cols-3 gap-6 mt-5'>
+      <HeaderContent />
+      {isWorkspaceEmpty ? (
+        <HomeStatsNoProjects />
+      ) : (
+        stats && <HomeStats stats={stats} />
+      )}
+      <div className='grid grid-cols-1  gap-6 mt-5'>
         <section className='xl:col-span-2'>
           <ProjectsOverview />
-        </section>
-        <section className='space-y-6'>
-          <TasksOverview />
         </section>
       </div>
     </div>

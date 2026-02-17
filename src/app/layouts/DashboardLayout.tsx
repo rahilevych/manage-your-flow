@@ -1,5 +1,4 @@
 import { SidebarProvider, SidebarTrigger } from '@/shared/ui/sidebar';
-import { HeaderContent } from '@/widgets/dashboard/dashboard-header/ui/HeaderContent';
 import { AppSidebar } from '@/widgets/dashboard/sidebar/ui/AppSidebar';
 import { Outlet } from 'react-router-dom';
 
@@ -10,9 +9,8 @@ export const DashboardLayout = () => {
         <AppSidebar />
         <div className='flex flex-col flex-1 overflow-y-auto'>
           <SidebarTrigger />
-          <div className='w-full max-w-[1440px] mx-auto p-3 md:p-6'>
+          <div className='w-full max-w-[1440px] mx-auto p-3 '>
             <main className='mt-1'>
-              <HeaderContent />
               <Outlet />
             </main>
           </div>
