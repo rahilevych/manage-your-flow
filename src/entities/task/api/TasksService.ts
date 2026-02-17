@@ -53,7 +53,7 @@ export default class TasksService {
     dto: UpdateTaskDto;
   }): Promise<Task> {
     return await api.patch(
-      `/workspaces/${data.workspaceId}/projects/${data.projectId}/${data.taskId}`,
+      `/workspaces/${data.workspaceId}/projects/${data.projectId}/tasks/${data.taskId}`,
       data.dto,
     );
   }
