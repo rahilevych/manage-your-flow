@@ -78,7 +78,7 @@ export function TasksTable<TData, TValue>({
   };
   return (
     <div className='space-y-4'>
-      <div className='flex flex-col gap-5  sm:flex-row items-cente justify-between py-4'>
+      <div className='flex flex-col gap-5  sm:flex-row items-center justify-between py-5'>
         <Input
           placeholder='Search tasks...'
           value={globalFilter ?? ''}
