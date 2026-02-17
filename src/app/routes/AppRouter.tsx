@@ -10,7 +10,7 @@ import { DashboardLayout } from '../layouts/DashboardLayout';
 import { SettingsPage } from '@/pages/SettingsPage';
 import { HomePage } from '@/pages/HomePage';
 import { MembersPage } from '@/pages/MembersPage';
-import { TasksPage } from '@/pages/TasksPage';
+
 import { ProjectsPage } from '@/pages/ProjectsPage';
 import { AuthLayout } from '../layouts/AuthLayout';
 import { LoginPage } from '@/pages/LoginPage';
@@ -20,6 +20,7 @@ import { GuestRoute } from './GuestRoute';
 import { WelcomePage } from '@/pages/WelcomePage';
 import { LandingPage } from '@/pages/landing/LandingPage';
 import { ProjectPage } from '@/pages/ProjectPage';
+import { TaskPage } from '@/pages/TaskPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -40,9 +41,10 @@ const router = createBrowserRouter(
             element={<MembersPage />}
             handle={{ title: 'Members' }}
           />
+
           <Route
-            path='tasks'
-            element={<TasksPage />}
+            path='projects/:projectId/tasks/:taskId'
+            element={<TaskPage />}
             handle={{ title: 'Tasks' }}
           />
           <Route

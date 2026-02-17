@@ -4,5 +4,5 @@ export interface StatsItem {
   label: string;
   value: number;
   icon: LucideIcon;
-  color: string;
+  color?: string;
 }

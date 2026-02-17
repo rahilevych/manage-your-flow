@@ -5,6 +5,7 @@ import { DeleteConfirmButton } from '@/features/workspace/ui/delete-workspace/De
 import { Button } from '@/shared/ui/button';
 import { Loader } from '@/shared/ui/Loader';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/tabs';
+
 import { MembersTab } from '@/widgets/dashboard/projects/project-page/MembersTab';
 import { TasksTab } from '@/widgets/dashboard/projects/project-page/ui/TasksTab';
 import { Settings2, ListTodo, Users2 } from 'lucide-react';
@@ -50,7 +51,7 @@ export const ProjectPage = () => {
             <UpdateProjectModal project={project}>
               <Button variant='outline' size='sm' className='gap-2'>
                 <Settings2 className='w-4 h-4' />
-                Settings
+                Update
               </Button>
             </UpdateProjectModal>
 
@@ -70,7 +71,7 @@ export const ProjectPage = () => {
         </div>
       </div>
 
-      <div className='flex-1 mt-6'>
+      <div className='flex-1 mt-10'>
         <Tabs defaultValue='tasks' className='w-full h-full space-y-6'>
           <TabsList className='grid w-full max-w-[400px] grid-cols-2'>
             <TabsTrigger value='tasks' className='gap-2'>
@@ -85,14 +86,14 @@ export const ProjectPage = () => {
 
           <TabsContent
             value='tasks'
-            className='border rounded-md p-6 min-h-[400px] bg-card/20'
+            className='border rounded-md p-6 bg-card/20'
           >
             <TasksTab />
           </TabsContent>
 
           <TabsContent
             value='members'
-            className='border rounded-md p-6 min-h-[400px] bg-card/20'
+            className='border rounded-md p-6  bg-card/20'
           >
             <MembersTab members={project.members} />
           </TabsContent>

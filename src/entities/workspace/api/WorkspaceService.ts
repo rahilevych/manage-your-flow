@@ -1,5 +1,6 @@
 import api from '@/shared/api/axiosInstance';
 import type { UpdateWorkspace, Workspace, WorkspaceDto } from '../model/types';
+import type { WorkspaceStats } from '@/shared/ui/custom/Stats';
 
 export default class WorkspaceService {
   static async create(dto: WorkspaceDto): Promise<Workspace> {
@@ -19,5 +20,8 @@ export default class WorkspaceService {
     dto: UpdateWorkspace;
   }): Promise<Workspace> {
     return await api.patch(`/workspaces/${data.id}`, data.dto);
+  }
+  static async getStats(workspaceId: string): Promise<WorkspaceStats> {
+    return await api.get(`/workspaces/${workspaceId}/stats`);
   }
 }

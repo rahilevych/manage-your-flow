@@ -13,11 +13,14 @@ export const useCreateProject = () => {
   return useMutation({
     mutationFn: ({ dto, workspaceId }: CreateProjectArgs) =>
       ProjectService.create(dto, workspaceId),
-    onSuccess: (newWorkspace) => {
-      toast.success(`${newWorkspace.name} project successfully created!`);
+    onSuccess: (project) => {
+      toast.success(`${project.name}  successfully created!`);
     },
-    onSettled: () => {
+    onSettled: (variables) => {
       queryClient.invalidateQueries({ queryKey: ['projects'] });
+      queryClient.invalidateQueries({
+        queryKey: ['workspace-stats', variables?.workspaceId],
+      });
     },
   });
 };

@@ -12,6 +12,9 @@ export const useDeleteProject = () => {
       queryClient.invalidateQueries({
         queryKey: ['projects', project.workspaceId],
       });
+      queryClient.invalidateQueries({
+        queryKey: ['workspace-stats', project.workspaceId],
+      });
       toast.success('Project deleted');
     },
     onError: () => {

@@ -58,7 +58,10 @@ export const ProjectsOverview = () => {
           />
         ) : (
           displayProjects.map((project) => (
-            <Link to={`/dashboard/${id}/projects/${project.id}`}>
+            <Link
+              key={project.id}
+              to={`/dashboard/${id}/projects/${project.id}`}
+            >
               <ProjectOverviewItem key={project.id} project={project} />
             </Link>
           ))
