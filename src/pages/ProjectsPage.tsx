@@ -2,6 +2,7 @@ import { ProjectOverviewItem } from '@/entities/project/ui/ProjectOverviewItem';
 import { useGetAllProjects } from '@/features/projects/model/useGetAllProjects';
 import { NoDataComponent } from '@/shared/ui/custom/NoDataComponent';
 import { Loader } from '@/shared/ui/Loader';
+import { HeaderContent } from '@/widgets/dashboard/dashboard-header/ui/HeaderContent';
 import { FolderPlus } from 'lucide-react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router';
@@ -16,6 +17,7 @@ export const ProjectsPage = () => {
 
   return (
     <div className='p-6'>
+      <HeaderContent />
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
         {projects?.map((project) => (
           <Link

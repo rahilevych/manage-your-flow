@@ -4,6 +4,7 @@ import { UpdateWorkspaceModal } from '@/features/workspace/ui/update-workspace/U
 import { useDeleteWorkspace } from '@/features/workspace/model/useDeleteWorkspace'; // Импортируем хук удаления
 
 import { useParams } from 'react-router';
+import { HeaderContent } from '@/widgets/dashboard/dashboard-header/ui/HeaderContent';
 
 export const SettingsPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -23,8 +24,8 @@ export const SettingsPage = () => {
   };
 
   return (
-    <div className='p-6 space-y-6'>
-      <h1 className='text-2xl font-bold'>Workspace Settings</h1>
+    <div className=' space-y-6'>
+      <HeaderContent />
 
       <div className='flex flex-col gap-4 border p-4 rounded-lg bg-card'>
         <h2 className='text-lg font-semibold'>Danger Zone</h2>

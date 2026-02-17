@@ -6,7 +6,7 @@ export const HeaderContent = () => {
   const meta = currentMatch?.handle as { title: string; description?: string };
 
   return (
-    <header className=' flex items-start w-full mb-4'>
+    <header className=' flex items-start w-full mb-10'>
       <div>
         <h2 className='text-xl md:text-3xl font-bold tracking-tight'>
           {meta.title}
