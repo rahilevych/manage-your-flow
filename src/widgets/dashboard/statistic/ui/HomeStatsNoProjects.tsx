@@ -1,4 +1,4 @@
-import { AddButton } from '@/shared/ui/custom/AddButton';
+import { CustomButton } from '@/shared/ui/custom/CustomButton';
 
 export const HomeStatsNoProjects = () => {
   return (
@@ -9,7 +9,7 @@ export const HomeStatsNoProjects = () => {
       <p className='text-muted-foreground mb-6'>
         Let's create your first project!
       </p>
-      <AddButton label='Create your first project' className='mx-auto' />
+      <CustomButton label='Create your first project' className='mx-auto' />
     </section>
   );
 };
