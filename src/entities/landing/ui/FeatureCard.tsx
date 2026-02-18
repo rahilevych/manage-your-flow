@@ -1,10 +1,16 @@
+import { item } from '@/shared/lib/animation';
 import type { Feature } from '@/widgets/landing/model/constants';
+import { motion } from 'motion/react';
+
 interface FeatureCardProps {
   card: Feature;
 }
 export const FeatureCard = ({ card }: FeatureCardProps) => {
   return (
-    <div className='group flex flex-col p-8 bg-card rounded-2xl border transition-all hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1'>
+    <motion.div
+      variants={item}
+      className='group flex flex-col p-8 bg-card rounded-2xl border  hover:shadow-xl hover:shadow-primary/5 '
+    >
       <div className='mb-6 w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-xl group-hover:bg-primary group-hover:text-primary-foreground transition-colors'>
         {card.icon}
       </div>
@@ -12,6 +18,6 @@ export const FeatureCard = ({ card }: FeatureCardProps) => {
       <p className='text-muted-foreground leading-relaxed'>
         {card.description}
       </p>
-    </div>
+    </motion.div>
   );
 };
