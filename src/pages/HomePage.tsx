@@ -8,6 +8,7 @@ import { useGetWorkspaceStats } from '@/features/workspace/model/useGetWorkspace
 import { Loader } from '@/shared/ui/Loader';
 
 export const HomePage = () => {
+  const title = 'Home';
   const { id: workspaceId } = useParams<{ id: string }>();
   const { data: stats } = useGetWorkspaceStats(workspaceId!);
   const { data: projects = [], isPending } = useGetAllProjects(workspaceId!);
@@ -17,7 +18,7 @@ export const HomePage = () => {
 
   return (
     <div className=' grid grid-cols-1 py-2 space-y-6'>
-      <HeaderContent />
+      <HeaderContent title={title} />
       {isWorkspaceEmpty ? (
         <HomeStatsNoProjects />
       ) : (

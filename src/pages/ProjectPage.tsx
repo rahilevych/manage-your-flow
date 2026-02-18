@@ -2,9 +2,12 @@ import { useDeleteProject } from '@/features/projects/model/useDeleteProject';
 import { useGetProject } from '@/features/projects/model/useGetProject';
 import { UpdateProjectModal } from '@/features/projects/ui/update-project/UpdateProjectModal';
 import { DeleteConfirmButton } from '@/features/workspace/ui/delete-workspace/DeleteConfirmButton';
-import { Button } from '@/shared/ui/button';
+import { BackButton } from '@/shared/ui/custom/BackButton';
+
+import { CustomButton } from '@/shared/ui/custom/CustomButton';
 import { Loader } from '@/shared/ui/Loader';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/tabs';
+import { HeaderContent } from '@/widgets/dashboard/dashboard-header/ui/HeaderContent';
 
 import { MembersTab } from '@/widgets/dashboard/projects/project-page/MembersTab';
 import { TasksTab } from '@/widgets/dashboard/projects/project-page/ui/TasksTab';
@@ -13,13 +16,13 @@ import { useParams, useNavigate } from 'react-router';
 
 export const ProjectPage = () => {
   const { id, projectId } = useParams<{ id: string; projectId: string }>();
+
   const navigate = useNavigate();
   const { data: project, isPending: isProjectPending } = useGetProject(
     id!,
     projectId!,
   );
   const { mutate: deleteProject, isPending: isDeleting } = useDeleteProject();
-
   const handleDelete = () => {
     if (id && projectId) {
       deleteProject(
@@ -34,40 +37,49 @@ export const ProjectPage = () => {
 
   return (
     <div className='flex flex-col h-full bg-background'>
-      <div className='mt-2 border-b bg-card/50'>
-        <div className='flex flex-col items-start gap-5 sm:flex-row justify-between  mb-4'>
-          <div>
-            <div className='flex  items-center gap-3'>
-              <h1 className='text-2xl font-medium tracking-tight'>
-                {project.name}
-              </h1>
-              <span className='px-2 py-0.5 bg-secondary text-secondary-foreground text-xs font-bold rounded uppercase'>
-                {project.key}
-              </span>
+      <div className='mt-2 bg-card/50'>
+        <HeaderContent>
+          <UpdateProjectModal project={project}>
+            <div className='w-full  flex flex-col sm:flex-row items-center justify-between'>
+              <BackButton />
+              <div className='flex items-center gap-5'>
+                <CustomButton variant='outline' size='lg' className='gap-2'>
+                  <Settings2 className='w-4 h-4' />
+                  Update
+                </CustomButton>
+                <DeleteConfirmButton
+                  onConfirm={handleDelete}
+                  isPending={isDeleting}
+                  title={`Delete ${project.name}?`}
+                  buttonText='Delete project '
+                />
+              </div>
             </div>
-          </div>
-
-          <div className='flex  items-center gap-2'>
-            <UpdateProjectModal project={project}>
-              <Button variant='outline' size='lg' className='gap-2'>
-                <Settings2 className='w-4 h-4' />
-                Update
-              </Button>
-            </UpdateProjectModal>
-
-            <DeleteConfirmButton
-              onConfirm={handleDelete}
-              isPending={isDeleting}
-              title={`Delete ${project.name}?`}
-              buttonText='Delete project '
-            />
-          </div>
+          </UpdateProjectModal>
+        </HeaderContent>
+        <div className='space-y-1'>
+          <h1 className='text-4xl font-medium tracking-tight lg:text-3xl text-zinc-900 dark:text-zinc-50 mb-5'>
+            {project.name}
+          </h1>
         </div>
 
-        <div className='max-w-3xl'>
-          <p className='text-muted-foreground text-sm leading-relaxed'>
-            {project.description || 'No description provided for this project.'}
-          </p>
+        <div className='w-full space-y-4'>
+          <div className='flex items-center gap-2'>
+            <h2 className='text-sm font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400'>
+              Description
+            </h2>
+            <div className='h-[1px] flex-1 bg-zinc-200 dark:bg-zinc-800' />
+          </div>
+
+          <div className='text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 whitespace-pre-wrap font-normal italic drop-shadow-sm'>
+            {project.description ? (
+              project.description
+            ) : (
+              <span className='text-muted-foreground/50 italic'>
+                No description provided for this task...
+              </span>
+            )}
+          </div>
         </div>
       </div>
 

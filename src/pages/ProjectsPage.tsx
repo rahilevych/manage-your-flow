@@ -8,6 +8,7 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router';
 
 export const ProjectsPage = () => {
+  const title = 'Projects';
   const { id: workspaceId } = useParams<{ id: string }>();
   const { data: projects, isPending } = useGetAllProjects(workspaceId!);
 
@@ -16,8 +17,8 @@ export const ProjectsPage = () => {
   }
 
   return (
-    <div className='p-6'>
-      <HeaderContent />
+    <div className='w-full flex flex-col'>
+      <HeaderContent title={title} />
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
         {projects?.map((project) => (
           <Link

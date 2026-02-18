@@ -6,8 +6,8 @@ export const BackButton = () => {
   const navigate = useNavigate();
   return (
     <Button
-      className='cursor-pointer '
-      variant='outline'
+      className='self-start cursor-pointer '
+      variant='ghost'
       size='lg'
       onClick={() => navigate(-1)}
     >

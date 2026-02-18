@@ -1,8 +1,8 @@
 import { ProjectOverviewItem } from '@/entities/project/ui/ProjectOverviewItem';
-import { AddButton } from '@/shared/ui/custom/AddButton';
+import { CustomButton } from '@/shared/ui/custom/CustomButton';
 import { SectionHeader } from '@/shared/ui/custom/SectionHeader';
 import { SeeAllButton } from '@/shared/ui/custom/SeeAllButton';
-import { FolderPlus } from 'lucide-react';
+import { FolderPlus, Plus } from 'lucide-react';
 import { NoDataComponent } from '@/shared/ui/custom/NoDataComponent';
 import { useCreateProject } from '@/features/projects/model/useCreateProject';
 import {
@@ -46,7 +46,9 @@ export const ProjectsOverview = () => {
   return (
     <div className='h-full flex flex-col border rounded-md p-2'>
       <SectionHeader title={title}>
-        <AddButton label={label} onClick={() => setIsModalOpen(true)} />
+        <CustomButton label={label} onClick={() => setIsModalOpen(true)}>
+          <Plus size={16} />
+        </CustomButton>
       </SectionHeader>
 
       <div className='p-2 flex flex-col gap-1 flex-grow'>

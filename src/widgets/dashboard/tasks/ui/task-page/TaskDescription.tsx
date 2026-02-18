@@ -4,7 +4,6 @@ import { Layout } from 'lucide-react';
 export const TaskDescription = ({ task }: { task: Task }) => {
   return (
     <>
-      {' '}
       <div className='space-y-1'>
         <h1 className='text-4xl font-medium tracking-tight lg:text-3xl text-zinc-900 dark:text-zinc-50 mb-5'>
           {task.title}

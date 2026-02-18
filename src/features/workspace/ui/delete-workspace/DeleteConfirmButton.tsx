@@ -35,7 +35,12 @@ export const DeleteConfirmButton = ({
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant='destructive' disabled={isPending} size='lg'>
+        <Button
+          variant='destructive'
+          disabled={isPending}
+          size='lg'
+          className='cursor-pointer'
+        >
           {buttonText}
         </Button>
       </AlertDialogTrigger>
