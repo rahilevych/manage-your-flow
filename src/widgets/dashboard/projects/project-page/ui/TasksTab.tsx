@@ -1,7 +1,7 @@
-import { Inbox } from 'lucide-react';
+import { Inbox, Plus } from 'lucide-react';
 
 import { NoDataComponent } from '@/shared/ui/custom/NoDataComponent';
-import { AddButton } from '@/shared/ui/custom/AddButton';
+import { CustomButton } from '@/shared/ui/custom/CustomButton';
 import { useParams } from 'react-router';
 
 import { Loader } from '@/shared/ui/Loader';
@@ -13,8 +13,8 @@ import {
 import { useCreateTask } from '@/features/task/model/useCreateTask';
 import { useGetTasks } from '@/features/task/model/useGetTasks';
 import { useState } from 'react';
-import { TasksTable } from '@/widgets/dashboard/tasks/tasks-table/TasksTable';
-import { columns } from '@/widgets/dashboard/tasks/tasks-table/Columns';
+import { TasksTable } from '@/widgets/dashboard/tasks/ui/tasks-table/TasksTable';
+import { columns } from '@/widgets/dashboard/tasks/ui/tasks-table/Columns';
 
 export const TasksTab = () => {
   const { id, projectId } = useParams<{ id: string; projectId: string }>();
@@ -51,7 +51,9 @@ export const TasksTab = () => {
     <div className='flex flex-col '>
       <div className='flex justify-between items-center'>
         <h3 className='font-semibold'> Tasks</h3>
-        <AddButton label='Add task' onClick={() => setIsModalOpen(true)} />
+        <CustomButton label='Add task' onClick={() => setIsModalOpen(true)}>
+          <Plus size={16} />
+        </CustomButton>
       </div>
 
       {isEmpty ? (
